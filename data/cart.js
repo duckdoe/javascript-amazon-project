@@ -66,4 +66,19 @@ function calculateCartQuantity() {
   return cartQuantity;
 }
 
-export { cart, addToCart, deleteFromCart, calculateCartQuantity };
+function updateQuantity(productId, newQuantity) {
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      cartItem.quantity = newQuantity;
+    }
+  });
+  saveToLocalStorage("cart", cart);
+}
+
+export {
+  cart,
+  addToCart,
+  deleteFromCart,
+  calculateCartQuantity,
+  updateQuantity,
+};
