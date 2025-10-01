@@ -169,16 +169,6 @@ function renderOrderSummary() {
     return newQuantity;
   }
 
-  function updateQuantityLabel(productId) {
-    document.querySelectorAll(".js-quantity-label").forEach((label) => {
-      const productLabelId = label.dataset.productId;
-
-      if (productLabelId === productId) {
-        label.innerHTML = getInputValue(productId);
-      }
-    });
-  }
-
   function removeSaveLink(productId) {
     productQuantity.forEach((product) => {
       const productQuantityId = product.dataset.productId;
@@ -198,7 +188,7 @@ function renderOrderSummary() {
         removeSaveLink(productId);
         updateQuantity(productId, inputValue);
         updateCheckoutQuantity();
-        updateQuantityLabel(productId);
+        renderOrderSummary();
         renderCheckoutHeader();
       }
       renderPaymentSummary();
@@ -216,10 +206,10 @@ function renderOrderSummary() {
         inputValue >= 0 &&
         inputValue <= 1000
       ) {
-        updateQuantityLabel(productId);
         removeSaveLink(productId);
         updateQuantity(productId, inputValue);
         updateCheckoutQuantity();
+        renderOrderSummary();
         renderPaymentSummary();
         renderCheckoutHeader();
       }
