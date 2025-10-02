@@ -183,8 +183,7 @@ function renderOrderSummary() {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
       const inputValue = getInputValue(productId);
-      ``;
-      if (inputValue >= 0 && inputValue <= 1000) {
+      if (inputValue > 0 && inputValue < 1000) {
         removeSaveLink(productId);
         updateQuantity(productId, inputValue);
         updateCheckoutQuantity();
@@ -196,15 +195,15 @@ function renderOrderSummary() {
   });
 
   function allowEnterKey(e) {
-    const inputProductId = e.target.dataset.productId;
-    const inputValue = getInputValue(inputProductId);
     document.querySelectorAll(".js-save-link").forEach((link) => {
+      const inputProductId = e.target.dataset.productId;
+      const inputValue = getInputValue(inputProductId);
       const productId = link.dataset.productId;
       if (
         e.key === "Enter" &&
         inputProductId === productId &&
-        inputValue >= 0 &&
-        inputValue <= 1000
+        inputValue > 0 &&
+        inputValue < 1000
       ) {
         removeSaveLink(productId);
         updateQuantity(productId, inputValue);
